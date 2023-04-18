@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI-Calculator</title>
+    <link rel="stylesheet" href="emicss.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h2>EMI CALCULATOR : </h2>
+            <fieldset>
+                <p>AMOUNT ₹ :
+                    <input type="number" id="amount" onchange="Calculate()"/>
+                </p>
+                <p>INTEREST RATE : 
+                    <input type="number" id="rate" onchange="Calculate()"/>
+                </p>
+            
+                <p>MONTHS TO PAY :
+                    <input type="number" id="months" onchange="Calculate()"/>
+                </p>
+            </fieldset>
+            
+            <h2 id="total"></h2>
+        </div>
+        <script>
+            function Calculate()
+            {
+                const amount =  document.getElementById("amount").value;
+                const rate = document.getElementById("rate").value;
+                const months = document.getElementById("months").value;
+                const interest = (amount * (rate * 0.01)) / months;
+                const total = ((amount / months) + interest).toFixed(2);
+                console.log(total)
+                if(!(isNaN(total))){
+                    if(total!="Infinity"){
+                        document.getElementById("total").innerHTML = "EMI : (₹)" + total;
+                    }
+                }
+            }
+        </script>
+    </div>
+    <script src="emi.js"></script>
+</body>
+</html>
